@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#0f4c81",
+                    "surface-dim": "#0b1c30",
+                    "inverse-surface": "#eaf1ff",
+                    "on-primary-fixed": "#001c37",
+                    "primary-fixed-dim": "#a0c9ff",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#213145",
+                    "surface-container-low": "#111d2e",
+                    "on-surface": "#f8f9ff",
+                    "on-background": "#f8f9ff",
+                    "tertiary": "#c0c1ff",
+                    "error": "#ffb4ab",
+                    "secondary-container": "#00504c",
+                    "surface": "#0b1c30",
+                    "tertiary-container": "#2f2ebe",
+                    "surface-tint": "#a0c9ff",
+                    "on-secondary-fixed": "#00201e",
+                    "background": "#0b1c30",
+                    "secondary-fixed": "#93f3eb",
+                    "on-tertiary-container": "#e1e0ff",
+                    "outline": "#8c9199",
+                    "on-secondary": "#003734",
+                    "surface-container-highest": "#374151",
+                    "inverse-on-surface": "#0b1c30",
+                    "surface-variant": "#42474f",
+                    "on-surface-variant": "#c2c7d1",
+                    "on-secondary-container": "#93f3eb",
+                    "inverse-primary": "#00355f",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-primary-fixed-variant": "#07497d",
+                    "on-secondary-fixed-variant": "#00504c",
+                    "outline-variant": "#42474f",
+                    "on-error": "#690005",
+                    "surface-container": "#1d2533",
+                    "primary": "#a0c9ff",
+                    "surface-container-lowest": "#070e1a",
+                    "on-tertiary": "#1509ad",
+                    "on-primary-container": "#d2e4ff",
+                    "secondary-fixed-dim": "#76d6cf",
+                    "on-primary": "#003258",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "secondary": "#76d6cf",
+                    "tertiary-fixed": "#e1e0ff",
+                    "primary-fixed": "#d2e4ff",
+                    "surface-bright": "#1a2533"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "touch-target": "48px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Public Sans"],
+                    "label-lg": ["Public Sans"],
+                    "body-lg": ["Public Sans"],
+                    "headline-md": ["Public Sans"],
+                    "display-lg": ["Public Sans"],
+                    "body-md": ["Public Sans"],
+                    "label-sm": ["Public Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "label-lg": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["14px", {"lineHeight": "1.2", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(11, 28, 48, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background dark">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest/80 backdrop-blur-md text-primary border-b border-outline-variant shadow-sm flex justify-between items-center w-full px-4 h-16 z-50 docked full-width top-0 sticky">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold text-primary-fixed">MediFind</span>
+<nav class="hidden md:flex gap-6 ml-8">
+<a class="text-primary-fixed font-semibold" href="#">Map</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded-lg" href="#">Pharmacy</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded-lg" href="#">Guidance</a>
+</nav>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">mic</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">photo_camera</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</header>
+<main class="flex flex-col md:flex-row h-[calc(100vh-64px)] overflow-hidden">
+<!-- Left Side: Map View -->
+<section class="relative flex-1 h-1/2 md:h-full bg-surface-container-low overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover brightness-75 contrast-125" data-alt="A highly detailed 3D topographic map rendering of a vibrant metropolitan city center. The map features clean, clinical blue and white aesthetics with soft ambient lighting. Distinctive pharmacy icons are scattered across the grid, glowing in healing green for high stock, soft amber for low stock, and medical red for out of stock. The overall mood is sophisticated, professional, and technologically advanced, echoing a modern healthcare platform." data-location="London" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkTPzkKrrZGQdCSnL8FUHFc7VhxjZjVuZ7QYVcfwGAuDYF8ZsEWOIC2Yj4HRoY2ppYag5yYedVEVD7Ods_exM7vZ--s1jw0-Z7FN3whiZTLh56hvFU-He8xa2X-3EcLWmUIfWcPE1OkcQ1CreIU3jvbnXa7KUrkeGN97XQrd43BZnVegKTWywXOUFQX3jR2EY6OML7Zmdh7cwxcyAV_79R8tGNCbSe3cHA_WCCE16X4BjsG2-7apVzpzGe0zhd0a2kPeu1QioScK4"/>
+</div>
+<!-- Floating Map Pins Overlay -->
+<div class="absolute top-1/4 left-1/3 z-10">
+<div class="flex flex-col items-center">
+<div class="bg-surface-container-lowest px-3 py-1 rounded-full shadow-lg border border-outline-variant flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+<span class="text-label-sm font-bold text-on-surface">$12.40</span>
+</div>
+<span class="material-symbols-outlined text-emerald-400 text-4xl -mt-1 drop-shadow-md" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<div class="absolute top-1/2 left-2/3 z-10">
+<div class="flex flex-col items-center">
+<div class="bg-surface-container-lowest px-3 py-1 rounded-full shadow-lg border border-outline-variant flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-amber-400"></div>
+<span class="text-label-sm font-bold text-on-surface">$14.10</span>
+</div>
+<span class="material-symbols-outlined text-amber-400 text-4xl -mt-1 drop-shadow-md" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<!-- Search and Filter Bar over Map -->
+<div class="absolute top-4 left-4 right-4 md:left-6 md:right-auto md:w-96 z-20">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md shadow-xl rounded-xl p-3 border border-outline-variant">
+<div class="relative flex items-center mb-3">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-lg focus:ring-2 focus:ring-primary text-on-surface placeholder-on-surface-variant text-body-md" placeholder="Search medicine or area..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+<button class="flex items-center gap-1 px-3 py-1.5 bg-primary text-on-primary rounded-full text-label-sm whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">schedule</span> Open Now
+                        </button>
+<button class="flex items-center gap-1 px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-full text-label-sm whitespace-nowrap hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">nightlight</span> 24-Hour
+                        </button>
+<button class="flex items-center gap-1 px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-full text-label-sm whitespace-nowrap hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">local_shipping</span> Home Delivery
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Scrollable Pharmacy List -->
+<aside class="w-full md:w-[450px] bg-surface-container-lowest border-l border-outline-variant flex flex-col z-30 h-1/2 md:h-full">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<div>
+<h1 class="font-headline-md text-primary">Nearby Pharmacies</h1>
+<p class="text-label-sm text-on-surface-variant">12 verified locations found</p>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-primary"><span class="material-symbols-outlined">tune</span></button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4 bg-surface-container-lowest">
+<!-- Pharmacy Card 1 (Green Stock) -->
+<article class="p-4 bg-surface-container border border-outline-variant rounded-xl hover:border-primary transition-all shadow-sm group">
+<div class="flex justify-between mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">local_pharmacy</span>
+</div>
+<div>
+<h3 class="font-label-lg text-on-surface">City Health Pharmacy</h3>
+<div class="flex items-center gap-1 text-label-sm text-emerald-400">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>In Stock (Verified 2m ago)</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-headline-md text-primary">$12.40</div>
+<div class="text-label-sm text-on-surface-variant">0.8 miles away</div>
+</div>
+</div>
+<div class="flex gap-2 mb-4">
+<span class="px-2 py-0.5 bg-primary-container/30 text-primary-fixed-dim text-[12px] font-semibold rounded">24/7 OPEN</span>
+<span class="px-2 py-0.5 bg-secondary-container/30 text-secondary-fixed text-[12px] font-semibold rounded">DELIVERY AVAILABLE</span>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-label-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg">directions</span> Navigate
+                        </button>
+<button class="w-12 bg-[#25D366] text-white flex items-center justify-center rounded-lg hover:opacity-90 transition-opacity">
+<img alt="WhatsApp" class="w-6 h-6 invert brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFQmmOWz1mZ_IRzaGQzpOlhEWsF_e7uBJbzVFuUu184igpb3NI9FKePl71nfQJFOYAPAehxteHlM-XDzTjeKmqRPUpt6vYLpQVXVfiEsku_1pvebBdU4B3RhHSgq08raMb39ORI8caHtXZwpuX0Dyk6nvktIX6G6-3VEabGAov5sKXnNbnIrZP7VldeQnC7rDC1m8yW8--i2F0jYThth6YR-j-IqQiB_h3pnu-zrieABCU-kbZWQBjszmQfmi60E_rcHsXoj6AodA"/>
+</button>
+</div>
+</article>
+<!-- Pharmacy Card 2 (Yellow Stock) -->
+<article class="p-4 bg-surface-container border border-outline-variant rounded-xl hover:border-primary transition-all shadow-sm group">
+<div class="flex justify-between mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<div>
+<h3 class="font-label-lg text-on-surface">Green Cross Medics</h3>
+<div class="flex items-center gap-1 text-label-sm text-amber-400">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>Low Stock (3 left)</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-headline-md text-primary">$14.10</div>
+<div class="text-label-sm text-on-surface-variant">1.4 miles away</div>
+</div>
+</div>
+<div class="flex gap-2 mb-4">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[12px] font-semibold rounded">CLOSES AT 10PM</span>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-label-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg">directions</span> Navigate
+                        </button>
+<button class="w-12 bg-[#25D366] text-white flex items-center justify-center rounded-lg hover:opacity-90 transition-opacity">
+<img alt="WhatsApp" class="w-6 h-6 invert brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAxbQqxF35CBKwKei3_N1cxElGy--Zr1O-5dQPTfPBqy1lAm14dK9QC84Ed8GrUy1r4EyWJxiMeRME2WdduwDnnQniaF7c-SKOGM2SK7ax4lG5UXqtf1Td87xAaxe9j-Cp42D_wvgIDmYKeObezwMqwbD77Jsg2sJmSN87aKaQg98P7TU0psELq1_o52oJi4r9EVkXFsSr2YyP1LXTO0RksNw5uPGDrKj40dHaul3nuJaSCU3dlhRY257SgzOGWk2whWRki3Ahu5Q"/>
+</button>
+</div>
+</article>
+<!-- Pharmacy Card 3 (Red Stock) -->
+<article class="p-4 bg-surface-container-low border border-outline-variant rounded-xl opacity-60 grayscale-[0.3]">
+<div class="flex justify-between mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+</div>
+<div>
+<h3 class="font-label-lg text-on-surface-variant">Elite Pharmacy Hub</h3>
+<div class="flex items-center gap-1 text-label-sm text-error">
+<span class="material-symbols-outlined text-sm">block</span>
+<span>Out of Stock</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-headline-md text-on-surface-variant">$11.90</div>
+<div class="text-label-sm text-on-surface-variant">2.1 miles away</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 border border-outline text-on-surface-variant py-2 rounded-lg font-label-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg">info</span> Notify Me
+                        </button>
+</div>
+</article>
+<!-- Intelligence Glow Prompt Card -->
+<div class="p-4 rounded-xl bg-gradient-to-br from-primary-container to-tertiary-container text-on-primary-container relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-bold text-label-sm uppercase tracking-wider text-primary-fixed">AI Discovery</span>
+</div>
+<p class="text-label-sm text-on-primary-container leading-relaxed">Save $4.50 by choosing a verified substitute available at <strong class="text-primary-fixed">City Health Pharmacy</strong>.</p>
+<button class="mt-3 w-full bg-surface-container-lowest/20 hover:bg-surface-container-lowest/30 backdrop-blur-sm text-on-primary-container py-2 rounded-lg text-label-sm font-bold transition-colors border border-on-primary-container/20">Compare Alternatives</button>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-tertiary-container blur-3xl opacity-50"></div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Side Navigation Bar (Desktop) -->
+<aside class="hidden md:flex flex-col h-screen fixed left-0 top-0 z-40 bg-surface-container-lowest h-full w-64 border-r border-outline-variant flat no shadows font-public-sans text-sm translate-x-[-100%] hover:translate-x-0 transition-transform duration-300">
+<div class="p-6">
+<span class="text-2xl font-black text-primary">MediFind AI</span>
+<p class="text-on-surface-variant mt-1">Verified Medical Care</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">home</span> Home
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span> Prices
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-primary-fixed-dim font-bold rounded-lg transition-all scale-95" href="#">
+<span class="material-symbols-outlined">map</span> Pharmacy
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">info</span> Guidance
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">bookmark</span> Saved
+            </a>
+</nav>
+<div class="p-4 border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold hover:opacity-90 transition-opacity">Compare Now</button>
+</div>
+</aside>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full md:hidden flex justify-around items-center h-16 px-2 bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] z-50 text-[10px] font-semibold font-public-sans">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high px-2 py-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-0.5">search</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary active:bg-surface-container-high px-2 py-1 rounded-lg scale-110 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-0.5" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span>Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high px-2 py-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-0.5">sync_alt</span>
+<span>Compare</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high px-2 py-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-0.5">verified_user</span>
+<span>Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high px-2 py-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-0.5">person</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>

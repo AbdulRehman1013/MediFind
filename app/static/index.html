@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MediFind | Medicine Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/app.css" />
+    <script defer src="/assets/app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">M</div>
+          <div>
+            <div class="brand-name">MediFind</div>
+            <div class="brand-subtitle">Find the right medicine at the right price</div>
+          </div>
+        </div>
+        <nav class="topnav">
+          <a href="#explore">Explore</a>
+          <a href="#compare">Compare</a>
+          <a href="#guidance">Guidance</a>
+        </nav>
+        <div class="topbar-actions">
+          <button class="ghost-button" id="locationButton" type="button">Use my location</button>
+          <button class="ghost-button" id="refreshButton" type="button">Refresh</button>
+          <button class="ghost-button" id="openReportButton" type="button">Open report</button>
+          <div class="pill" id="locationStatus">Location off</div>
+          <div class="pill" id="reportCountPill">0 reports</div>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="hero panel">
+          <div class="hero-copy">
+            <div class="eyebrow">AI medicine search and price transparency</div>
+            <h1>Compare trusted pharmacies in one calm, simple screen.</h1>
+            <p>
+              Search by brand, generic, or symptom. See nearby availability, compare fair prices, and save medicines that matter to you.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" id="focusSearchButton" type="button">Start searching</button>
+              <button class="secondary-button" id="openFilterButton" type="button">Open verified only</button>
+              <button class="secondary-button" id="useLocationHeroButton" type="button">Enable nearby mode</button>
+            </div>
+            <div class="stats-grid" id="statsGrid">
+              <div class="stat-card">
+                <span class="stat-label">Medicines</span>
+                <strong id="statMedicines">0</strong>
+                <small>available in the catalog</small>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Verified pharmacies</span>
+                <strong id="statPharmacies">0</strong>
+                <small>trusted sources indexed</small>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Average savings</span>
+                <strong id="statSavings">PKR 0</strong>
+                <small>per compared medicine</small>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Favorites</span>
+                <strong id="statFavorites">0</strong>
+                <small>saved for quick access</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-panel">
+            <div class="map-header">
+              <div>
+                <div class="panel-kicker">Availability map</div>
+                <div class="panel-title" id="mapTitle">Nearby options</div>
+              </div>
+              <div class="map-chip" id="mapStatus">Live inventory</div>
+            </div>
+            <div class="availability-map" id="availabilityMap">
+              <div class="map-grid"></div>
+              <div class="map-core">
+                <div class="map-core-title">Fair price is visible</div>
+                <div class="map-core-subtitle">Select a medicine to inspect nearby offers</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-grid" id="explore">
+          <div class="panel left-panel">
+            <div class="section-head">
+              <div>
+                <div class="panel-kicker">Medicine search</div>
+                <h2>Explore medicines and compare prices</h2>
+              </div>
+              <div class="search-meta" id="resultMeta">Loading…</div>
+            </div>
+
+            <form class="search-row" id="searchForm">
+              <label class="search-input">
+                <span>Search</span>
+                <input id="searchInput" type="search" placeholder="Brand, generic, symptom" autocomplete="off" />
+              </label>
+              <label class="search-input">
+                <span>City</span>
+                <select id="cityFilter">
+                  <option value="">All cities</option>
+                </select>
+              </label>
+              <label class="search-input">
+                <span>Mode</span>
+                <select id="stockFilter">
+                  <option value="">Any stock</option>
+                  <option value="verified">Verified only</option>
+                  <option value="delivery">Delivery only</option>
+                </select>
+              </label>
+            </form>
+
+            <div class="chip-row" id="quickChips">
+              <button class="chip active" type="button" data-query="">All</button>
+              <button class="chip" type="button" data-query="diabetes">Diabetes</button>
+              <button class="chip" type="button" data-query="cholesterol">Cholesterol</button>
+              <button class="chip" type="button" data-query="thyroid">Thyroid</button>
+              <button class="chip" type="button" data-query="infection">Infection</button>
+            </div>
+
+            <div class="medicine-list" id="medicineList"></div>
+          </div>
+
+          <aside class="panel detail-panel" id="compare">
+            <div class="section-head">
+              <div>
+                <div class="panel-kicker">Selected medicine</div>
+                <h2 id="detailTitle">Choose a medicine</h2>
+              </div>
+              <button class="ghost-button" id="favoriteButton" type="button" hidden>Save</button>
+            </div>
+
+            <div id="detailEmpty" class="empty-state">
+              Pick a medicine card on the left to see the cheapest source, safety guidance, and alternatives.
+            </div>
+
+            <div id="detailContent" class="detail-content" hidden>
+              <div class="summary-strip">
+                <div class="summary-item">
+                  <span>Cheapest</span>
+                  <strong id="cheapestPrice">PKR --</strong>
+                </div>
+                <div class="summary-item">
+                  <span>Average</span>
+                  <strong id="averagePrice">PKR --</strong>
+                </div>
+                <div class="summary-item">
+                  <span>Savings</span>
+                  <strong id="savingsValue">PKR --</strong>
+                </div>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-card-head">
+                  <div>
+                    <div class="detail-label" id="medicineCategory">Category</div>
+                    <div class="detail-name" id="medicineName">Medicine</div>
+                  </div>
+                  <div class="badge" id="favoriteBadge">Saved</div>
+                </div>
+                <p id="medicineSummary"></p>
+                <div class="tag-row" id="medicineTags"></div>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-card-head">
+                  <div>
+                    <div class="detail-label">Pharmacy offers</div>
+                    <div class="detail-name">Compare nearby sources</div>
+                  </div>
+                  <div class="muted" id="offerCount"></div>
+                </div>
+                <div class="pricing-note" id="pricingNote"></div>
+                <div class="offer-list" id="offerList"></div>
+              </div>
+
+              <div class="detail-card" id="guidance">
+                <div class="detail-card-head">
+                  <div>
+                    <div class="detail-label">Usage guidance</div>
+                    <div class="detail-name">Helpful safety notes</div>
+                  </div>
+                </div>
+                <div class="guidance-grid">
+                  <div class="guidance-block">
+                    <span>Dosage</span>
+                    <p id="dosageText"></p>
+                  </div>
+                  <div class="guidance-block">
+                    <span>Food notes</span>
+                    <p id="foodText"></p>
+                  </div>
+                  <div class="guidance-block">
+                    <span>Side effects</span>
+                    <p id="sideEffectsText"></p>
+                  </div>
+                  <div class="guidance-block">
+                    <span>Interactions</span>
+                    <p id="interactionText"></p>
+                  </div>
+                  <div class="guidance-block full">
+                    <span>Pregnancy and breastfeeding</span>
+                    <p id="pregnancyText"></p>
+                  </div>
+                </div>
+                <div class="disclaimer">Always consult a doctor or pharmacist before starting, switching, or stopping any medicine.</div>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-card-head">
+                  <div>
+                    <div class="detail-label">AI alternatives</div>
+                    <div class="detail-name">Lower-cost substitutes</div>
+                  </div>
+                </div>
+                <div class="alternative-list" id="alternativeList"></div>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-card-head">
+                  <div>
+                    <div class="detail-label">Community action</div>
+                    <div class="detail-name">Report suspicious pricing</div>
+                  </div>
+                  <button class="ghost-button" id="openReportButtonInline" type="button">Open terminal</button>
+                </div>
+                <p class="muted">Open the report terminal to submit a suspicious price, expiry, or counterfeit concern.</p>
+              </div>
+
+              <div class="detail-card" id="reportSection">
+                <div class="detail-card-head">
+                  <div>
+                    <div class="detail-label">Report terminal</div>
+                    <div class="detail-name" id="reportDrawerTitle">Submit a report</div>
+                  </div>
+                </div>
+                <form id="reportForm" class="report-form">
+                  <input id="reportMedicineId" type="hidden" name="medicine_id" />
+                  <div class="report-summary" id="reportSummaryLine">No medicine selected yet</div>
+                  <label>
+                    <span>Issue type</span>
+                    <select id="reportType">
+                      <option value="overpriced">Overpriced</option>
+                      <option value="expired">Expired</option>
+                      <option value="counterfeit">Counterfeit concern</option>
+                      <option value="wrong_info">Wrong information</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Note</span>
+                    <textarea id="reportNote" rows="4" placeholder="Optional details"></textarea>
+                  </label>
+                  <button class="primary-button" type="submit">Submit report</button>
+                  <div class="form-message" id="reportMessage"></div>
+                </form>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

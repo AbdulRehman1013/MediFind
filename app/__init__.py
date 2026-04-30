@@ -1,0 +1,2 @@
+"""MediFind application package."""
+
